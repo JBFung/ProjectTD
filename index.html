@@ -1,8 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+		<!-- CACHE_CONTROL_META_INJECTED -->
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
 		<title>Neon Pulse TD - DJ Festival</title>
 		<style>
 html, body, #canvas {
@@ -109,9 +113,37 @@ body {
 			<div id="status-notice"></div>
 		</div>
 
+		<!-- CACHE_CLEANER_SCRIPT_INJECTED -->
+		<script>
+// Web cache cleaner: clear CacheStorage, ServiceWorker and intercept fetch with no-cache
+(function() {
+	if ('caches' in window) {
+		caches.keys().then(function(names) {
+			for (var i = 0; i < names.length; i++) {
+				caches.delete(names[i]);
+			}
+		}).catch(function() {});
+	}
+	if ('serviceWorker' in navigator) {
+		navigator.serviceWorker.getRegistrations().then(function(registrations) {
+			for (var i = 0; i < registrations.length; i++) {
+				registrations[i].unregister();
+			}
+		}).catch(function() {});
+	}
+	var _nativeFetch = window.fetch;
+	window.fetch = function(input, init) {
+		init = init || {};
+		if (!init.cache) {
+			init.cache = 'no-cache';
+		}
+		return _nativeFetch.call(this, input, init);
+	};
+})();
+		</script>
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":9402608,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":9403088,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
